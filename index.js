@@ -52,6 +52,25 @@ const CHOCOLATES = [
     });
   });
 
+  app.get("/chocolates/:id", (req, res) => {
+    const { id } = req.params;
+    const chocolate = CHOCOLATES.find((choc) => choc.id === parseInt(id));
+  
+    if (!chocolate) {
+      return res.status(404).json({
+        success: false,
+        message: "Chocolate not found",
+      });
+    }
+  
+    res.status(200).json({
+      success: true,
+      data: chocolate,
+      message: "Chocolate fetched successfully",
+    });
+  });
+  
+
   app.post("/chocolates", (req, res) => {
     const { id, name, description } = req.body;
   
