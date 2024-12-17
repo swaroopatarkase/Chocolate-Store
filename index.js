@@ -8,7 +8,7 @@ app.get("/ping", (req, res)=>{
     res.send("pong")
 })
 
-app.listen(5001, ()=>{
-    console.log(`Server is running on port http://localhost:5001`);
-    
+const PORT = 5001;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
