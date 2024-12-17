@@ -151,6 +151,12 @@ app.put("/chocolates/:id", (req, res) => {
     });
   });
   
+  app.get("*", (req, res) => {
+    res.status(404).json({
+      success: false,
+      message: "API route not found",
+    });
+  });
 
   
 
