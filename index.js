@@ -83,6 +83,31 @@ const CHOCOLATES = [
   });
 });
 
+app.put("/chocolates/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, description } = req.body;
+  
+    
+    const chocolateIndex = CHOCOLATES.findIndex((choc) => choc.id === parseInt(id));
+  
+    if (chocolateIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Chocolate not found",
+      });
+    }
+  
+    
+    CHOCOLATES[chocolateIndex] = { id: parseInt(id), name, description };
+  
+    res.status(200).json({
+      success: true,
+      data: CHOCOLATES[chocolateIndex],
+      message: "Chocolate updated successfully",
+    });
+  });
+  
+
   
 
 const PORT = 5001;
