@@ -37,6 +37,13 @@ const CHOCOLATES = [
   ];
   
 
+  app.get("/health", (req, res) => {
+    res.status(200).json({
+      success: true,
+      message: "Server is running",
+    });
+  });
+
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
