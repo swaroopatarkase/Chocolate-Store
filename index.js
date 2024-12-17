@@ -52,6 +52,39 @@ const CHOCOLATES = [
     });
   });
 
+  app.post("/chocolates", (req, res) => {
+    const { id, name, description } = req.body;
+  
+    if (!id) {
+      return res.status(400).json({ success: false, message: "ID is required" });
+    }
+    if (!name) {
+      return res.status(400).json({ success: false, message: "Name is required" });
+    }
+    if (!description) {
+      return res.status(400).json({ success: false, message: "Description is required" });
+    }
+
+    const existingChocolate = CHOCOLATES.find((choc) => choc.id === id);
+  if (existingChocolate) {
+    return res.status(400).json({
+      success: false,
+      message: "Chocolate with this ID already exists",
+    });
+  }
+
+  const newChocolate = { id, name, description };
+  CHOCOLATES.push(newChocolate);
+
+  res.status(201).json({
+    success: true,
+    data: newChocolate,
+    message: "Chocolate added successfully",
+  });
+});
+
+  
+
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
