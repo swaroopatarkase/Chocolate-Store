@@ -44,6 +44,14 @@ const CHOCOLATES = [
     });
   });
 
+  app.get("/chocolates", (req, res) => {
+    res.status(200).json({
+      success: true,
+      data: CHOCOLATES,
+      message: "Chocolates fetched successfully",
+    });
+  });
+
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
