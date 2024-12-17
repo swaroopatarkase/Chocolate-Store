@@ -106,6 +106,31 @@ app.put("/chocolates/:id", (req, res) => {
       message: "Chocolate updated successfully",
     });
   });
+
+  app.patch("/chocolates/name/:id", (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+  
+    // Find the chocolate
+    const chocolateIndex = CHOCOLATES.findIndex((choc) => choc.id === parseInt(id));
+  
+    if (chocolateIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Chocolate not found",
+      });
+    }
+  
+    // Update name
+    CHOCOLATES[chocolateIndex].name = name;
+  
+    res.status(200).json({
+      success: true,
+      data: CHOCOLATES[chocolateIndex],
+      message: "Chocolate name updated successfully",
+    });
+  });
+  
   
 
   
