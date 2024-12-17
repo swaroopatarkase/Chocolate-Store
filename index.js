@@ -111,7 +111,7 @@ app.put("/chocolates/:id", (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
   
-    // Find the chocolate
+    
     const chocolateIndex = CHOCOLATES.findIndex((choc) => choc.id === parseInt(id));
   
     if (chocolateIndex === -1) {
@@ -121,7 +121,6 @@ app.put("/chocolates/:id", (req, res) => {
       });
     }
   
-    // Update name
     CHOCOLATES[chocolateIndex].name = name;
   
     res.status(200).json({
@@ -131,6 +130,26 @@ app.put("/chocolates/:id", (req, res) => {
     });
   });
   
+  app.delete("/chocolates/:id", (req, res) => {
+    const { id } = req.params;
+  
+    const chocolateIndex = CHOCOLATES.findIndex((choc) => choc.id === parseInt(id));
+  
+    if (chocolateIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Chocolate not found",
+      });
+    }
+  
+    
+    CHOCOLATES.splice(chocolateIndex, 1);
+  
+    res.status(200).json({
+      success: true,
+      message: "Chocolate deleted successfully",
+    });
+  });
   
 
   
