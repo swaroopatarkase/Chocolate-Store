@@ -11,26 +11,31 @@ const CHOCOLATES = [
     id: 1,
     name: "Dairy Milk",
     description: "Creamy milk chocolate",
+    price: "20",
   },
   {
     id: 2,
     name: "KitKat",
     description: "Crispy wafer chocolate",
+     price: "20",
   },
   {
     id: 3,
     name: "Ferrero Rocher",
     description: "Hazelnut chocolate ball",
+     price: "20",
   },
   {
     id: 4,
     name: "Galaxy",
     description: "Smooth and creamy chocolate",
+     price: "20",
   },
   {
     id: 5,
     name: "Snickers",
     description: "Peanut and caramel chocolate bar",
+     price: "20",
   },
 ];
 
