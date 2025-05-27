@@ -17,25 +17,25 @@ const CHOCOLATES = [
     id: 2,
     name: "KitKat",
     description: "Crispy wafer chocolate",
-     price: "20",
+    price: "20",
   },
   {
     id: 3,
     name: "Ferrero Rocher",
     description: "Hazelnut chocolate ball",
-     price: "20",
+    price: "20",
   },
   {
     id: 4,
     name: "Galaxy",
     description: "Smooth and creamy chocolate",
-     price: "20",
+    price: "20",
   },
   {
     id: 5,
     name: "Snickers",
     description: "Peanut and caramel chocolate bar",
-     price: "20",
+    price: "20",
   },
 ];
 
@@ -73,7 +73,7 @@ app.get("/chocolates/:id", (req, res) => {
 });
 
 app.post("/chocolates", (req, res) => {
-  const { id, name, description } = req.body;
+  const { id, name, description, price } = req.body;
 
   if (!id) {
     return res.status(400).json({ success: false, message: "ID is required" });
@@ -84,6 +84,9 @@ app.post("/chocolates", (req, res) => {
   if (!description) {
     return res.status(400).json({ success: false, message: "Description is required" });
   }
+  if (!price) {
+    return res.status(400).json({ success: false, message: "Price is required" });
+  }
 
   const existingChocolate = CHOCOLATES.find((choc) => choc.id === id);
   if (existingChocolate) {
@@ -93,7 +96,7 @@ app.post("/chocolates", (req, res) => {
     });
   }
 
-  const newChocolate = { id, name, description };
+  const newChocolate = { id, name, description, price };
   CHOCOLATES.push(newChocolate);
 
   res.status(201).json({
@@ -105,7 +108,7 @@ app.post("/chocolates", (req, res) => {
 
 app.put("/chocolates/:id", (req, res) => {
   const { id } = req.params;
-  const { name, description } = req.body;
+  const { name, description, price } = req.body;
 
   const chocolateIndex = CHOCOLATES.findIndex((choc) => choc.id === parseInt(id));
 
@@ -116,7 +119,7 @@ app.put("/chocolates/:id", (req, res) => {
     });
   }
 
-  CHOCOLATES[chocolateIndex] = { id: parseInt(id), name, description };
+  CHOCOLATES[chocolateIndex] = { id: parseInt(id), name, description, price };
 
   res.status(200).json({
     success: true,
@@ -178,4 +181,3 @@ const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
